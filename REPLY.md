@@ -16,3 +16,8 @@ First off I'll like to mention that this is my first attempt at React. I felt th
 * fix bugs
     * Issue with cart not instantiating properly which causes first click to not add an item.
     * state issues where removing a cart time if doesnt refresh the child component. Implementing redux might help with state issues.
+
+## To serve the app, run
+```
+npm start
+```
