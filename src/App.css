@@ -3,14 +3,19 @@
 }
 
 .App-logo {
-  height: 80px;
+  height: 50px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
   padding: 20px;
-  color: white;
+}
+
+.App-header a:visited  {
+  color: var(--dark)
 }
 
 .App-title {
@@ -19,4 +24,10 @@
 
 .App-intro {
   font-size: large;
+}
+
+.App-header a {
+  padding-right: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
 }

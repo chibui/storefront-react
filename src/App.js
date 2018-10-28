@@ -1,34 +1,68 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import Category from "./category/Category";
 import Cart from "./cart/Cart";
+import CartPopUp from "./cartPopUp/cartPopUp"
 import Product from "./product/Product";
+import './App.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      'products' : [],
+      'cart' : {},
+      'location': ''
+    }
+  }
+
+  componentWillMount() {
+    this.getCart();
+  }
+
+  getCart() {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    // cart not initalizing properly
+    
+    if (cart) {
+      this.setState({ cart: cart });      
+    } else {    
+        cart = {
+            'items' : []
+        };
+    }
+  }
+
   render() {
+    let cart = this.state.cart.items;
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Storefront Assignment</h1>
-        </header>
-        <p className="App-intro">
-          To get started, delete this header and introduction, and begin building your app in the provided components.
-        </p>
-        <p className="App-intro">
-          We've setup the bare minimum you need to get started, but feel free to add as many components as you see fit.
-        </p>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Link to="/">
+              <img src="../media/logo.png" className="App-logo" alt="logo"/>
+            </Link>
+            
+            <div className="App-header-center">
+              <Link to="/">Home</Link>  
+              <Link to="/">Shop</Link>  
+              <Link to="/">Journal</Link>  
+              <Link to="/">More</Link>  
+            </div>
 
-        <header>
-            <Link to="/cart">My Cart</Link>
-        </header>
+            <Link className="App-header-right" to="/cartPopUp">My Cart ({cart ? cart.length : 0})</Link>
+          </header>
 
-        <Route exact path="/" component={Category} />
-        <Route path="/cart" component={Cart}/>
-        <Route path="/product/:id" component={Product}/>
-      </div>
+          <div>{this.state.location}</div>
+
+          <Route exact path="/" component={Category} />
+          <Route exact path="/cart" component={Cart}/>
+          <Route path="/cartPopUp" component={CartPopUp}/>
+          <Route exact path="/product/:title" component={Product}/>
+        </div>
+      </Router>
     );
   }
 }

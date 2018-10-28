@@ -1,5 +1,45 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: serif;
+}
+
+button {
+  border: none;
+}
+
+:root {
+  --dark-bg-color: #3c3c3c;
+  --grey-bg-color: #818181;
+  --light-bg-color: #dedede;
+  --lighter-bg-color: #f5f5f5;
+  --white-bg-color: #ffffff;
+  --dark-text-color: #3c3c3c;
+  --grey-text-color: #818181;
+  --light-text-color: #dedede;
+  --white-text-color: #ffffff;
+  --dark-border-color: #3c3c3c;
+  --light-border-color: #f5f5f5;
+}
+
+.button-dark {
+  background-color: var(--dark-bg-color);
+  color: var(--light-text-color);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.button-grey {
+  background-color: var(--grey-bg-color);
+  color: var(--light-text-color);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.button-outline {
+  background: none;
+  border: 2px solid var(--dark-border-color);
+  color: var(--dark-text-color);
+  text-transform: uppercase;
+  font-weight: 600;
 }
